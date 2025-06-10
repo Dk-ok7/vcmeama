@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Você me ama?</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom, #fbc2eb, #a6c1ee);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .painel {
+      background-color: #fff0f5;
+      width: 90%;
+      max-width: 500px;
+      padding: 40px;
+      border-radius: 30px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      color: #d63384;
+      margin-bottom: 25px;
+      font-size: 2em;
+    }
+
+    #imagemok {
+      width: 220px;
+      height: auto;
+      display: block;
+      margin: 0 auto 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    button {
+      height: 45px;
+      width: 120px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin: 10px;
+      transition: all 0.3s ease;
+    }
+
+    #sim {
+      background-color: #e75480;
+      color: white;
+    }
+
+    #sim:hover {
+      background-color: #c03060;
+    }
+
+    #nao {
+      background-color: #222;
+      color: #ff4d4d;
+    }
+
+    #nao:hover {
+      background-color: #444;
+    }
+
+    .heart {
+      position: fixed;
+      top: -20px;
+      font-size: 24px;
+      color: #ff69b4;
+      animation: fall 5s linear infinite;
+      z-index: 0;
+      opacity: 0.8;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MÚSICA DE FUNDO -->
+  <audio id="bgm" autoplay loop muted>
+    <source src="musica.mp3" type="audio/mpeg" />
+    Seu navegador não suporta áudio HTML5.
+  </audio>
+
+  <main class="painel">
+    <h1>Você me ama?</h1>
+    <img src="ok3.jpeg" id="imagemok" alt="Coração com carinha feliz" />
+    <button id="sim">Sim! ✨</button>
+    <button id="nao">Não :(</button>
+  </main>
+
+  <script>
+    // Corações caindo
+    function criarCoracao() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (Math.random() * 10 + 16) + "px";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 5000);
+    }
+
+    setInterval(criarCoracao, 300);
+
+    // Botões
+    document.getElementById("nao").addEventListener("click", function () {
+      window.location.href = "https://dk-ok7.github.io/VoceNaoMeQuer/";
+    });
+
+    document.getElementById("sim").addEventListener("click", function () {
+      const audio = document.getElementById("bgm");
+      audio.muted = false;
+      audio.play();
+
+      setTimeout(() => {
+        window.location.href = "https://dk-ok7.github.io/obrigado/";
+      }, 1000); // Aguarda 1 segundo antes de redirecionar
+    });
+  </script>
+
+</body>
+</html>
